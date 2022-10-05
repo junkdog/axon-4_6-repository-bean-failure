@@ -6,6 +6,7 @@ import io.restassured.module.kotlin.extensions.Given
 import io.restassured.module.kotlin.extensions.Then
 import io.restassured.module.kotlin.extensions.When
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
@@ -28,9 +29,9 @@ class FooTest {
         } Then {
             statusCode(200)
         } Extract {
-            body().asString().takeIf(String::isNotEmpty)
+            body()
         }
 
-        assertThat(id, id != null)
+        Assertions.assertNotEquals(id, null)
     }
 }
